@@ -26,5 +26,8 @@ Yes, you can reconfigure the following options by cloning the repo and substitut
   
   Protip: Run `man sleep` for details on all possible values run sleep --help or read the documentation from GNU coreutils at http://www.gnu.org/software/coreutils/sleep
 
+### Possible future changes
+  - Support for setting/loading config from environment variables
+  - Zsh support
 
 
