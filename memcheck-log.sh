@@ -25,15 +25,15 @@ do
 	if [[ "$free" -le "$MEMORY_CRITICAL_LIMIT"  ]]; then
 		# Get top processes consuming system memory and save to log file 
 		ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head > "$LOG_DIR/top_proccesses_consuming_memory.txt"
-		echo "$(date '+%x %I:%M %p %Z') ($(date '+%s')s): Critically low memory: $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
+		echo "$(date '+%x %I:%M:%S %p %Z') ($(date '+%s')s): Critically low memory: $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
 
 		# Raise alert
 		notify-send -u critical -t 2000 "Warning, memory is running dangerously low" "Free memory: $free MB"
 	elif [[ "$free" -le "$MEMORY_LOW_LIMIT" ]]; then
 		notify-send -u normal -t 1500 "Warning, memory is getting low" "Free memory: $free MB"
-		echo "$(date '+%x %I:%M %p %Z') ($(date '+%s')s): Low Memory - $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
+		echo "$(date '+%x %I:%M:%S %p %Z') ($(date '+%s')s): Low Memory - $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
 	else
-	   echo "$(date '+%x %I:%M %p %Z') ($(date '+%s')s): Current available memory - $free megabytes" >> "$LOG_DIR/memcheck.log"
+	   echo "$(date '+%x %I:%M:%S %p %Z') ($(date '+%s')s): Current available memory OK - $free megabytes" >> "$LOG_DIR/memcheck.log"
 
 	fi
 	sleep "$CHECK_INTERVAL" # Wait for next poll event
