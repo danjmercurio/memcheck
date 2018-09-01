@@ -37,6 +37,11 @@ Yes, you can reconfigure the following options by cloning the repo and substitut
   
   Protip: Run `man sleep` for details on all possible values run sleep --help or read the documentation from GNU coreutils at http://www.gnu.org/software/coreutils/sleep
 
+### Logging version
+I added another version which logs the current memory state. To purge the logs, run `rm -rf $HOME/.memcheck/*.log`. Again, if you are new to Linux, please be very careful with this command.
+If you have changed the LOG_DIR variable from its default, use `rm` on that directory instead.
+Why not write to /var/log? On some systems even just viewing /var/log requires privilege escalation. Since this is a userspace script, it's better to confine it to a dotfolder in the home directory. 
+
 ### Possible future changes
   - Support for setting/loading config from environment variables
   - Zsh support

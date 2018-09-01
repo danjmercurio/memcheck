@@ -24,7 +24,7 @@ do
 	# Check if free memory is less or equals to 100MB
 	if [[ "$free" -le "$MEMORY_CRITICAL_LIMIT"  ]]; then
 		# Get top processes consuming system memory and save to log file 
-		ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head > "$LOG_DIR/top_proccesses_consuming_memory.txt"
+		ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head > "$LOG_DIR/top_proccesses_consuming_memory.log"
 		echo "$(date '+%x %I:%M:%S %p %Z') ($(date '+%s')s): Critically low memory: $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
 
 		# Raise alert
