@@ -22,7 +22,7 @@ The original is here: https://www.tecmint.com/shell-script-to-send-email-alert-w
 Yes, you can reconfigure the following options by cloning the repo and substituting your own values where I have defined the defaults
   - `MEMORY_CRITICAL_LIMIT=100` Default: **100mb**
   - `MEMORY_LOW_LIMIT=300` Default: **300mb**
-  - `CHECK_INTERVAL='5s'` Default: Check memory levels every 5 seconds. 
+  - `CHECK_INTERVAL='5s'` Default: **Check memory levels every 5 seconds.**
   
   Protip: Run `man sleep` for details on all possible values run sleep --help or read the documentation from GNU coreutils at http://www.gnu.org/software/coreutils/sleep
 
