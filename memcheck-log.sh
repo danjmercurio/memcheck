@@ -13,20 +13,25 @@
 MEMORY_CRITICAL_LIMIT=100 # 100mb
 MEMORY_LOW_LIMIT=300 # 300mb
 CHECK_INTERVAL='5s' # Check memory levels every 5 seconds. Run man sleep for details on possible arguments
+LOG_DIR="$HOME/.memcheck"
 
-while true 
+mkdir -p "$LOG_DIR" # Create directory for log files if it doesn't exist
+
+while true
 do
 	# Get total free memory size in megabytes (MB) 
 	free=$(free -mt | grep Total | awk '{print $4}')
-	## check if free memory is less or equals to 100MB
+	# Check if free memory is less or equals to 100MB
 	if [[ "$free" -le "$MEMORY_CRITICAL_LIMIT"  ]]; then
-		## get top processes consuming system memory and save to temporary file 
-		ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head > /home/demo/Desktop/top_proccesses_consuming_memory.txt
-		#file=/home/demo/top_proccesses_consuming_memory.txt
-		## raise alert
+		# Get top processes consuming system memory and save to log file 
+		ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head > "$LOG_DIR/top_proccesses_consuming_memory.txt"
+		echo "$(date), Free Memory: $free" >> "$LOG_DIR/memcheck.log" # Append to log
+
+		# Raise alert
 		notify-send -u critical -t 2000 "Warning, memory is running dangerously low" "Free memory: $free MB"
 	elif [[ "$free" -le "$MEMORY_LOW_LIMIT" ]]; then
 		notify-send -u normal -t 1500 "Warning, memory is getting low" "Free memory: $free MB"
+		echo "$(date), Free Memory: $free megabytes" >> "$LOG_DIR/memcheck.log" # Append to log
 	else
 	   echo "$free"
 	fi
