@@ -24,6 +24,11 @@ It included provisions to email the user instead of using `libnotify`. Although 
 
 The original is here: https://www.tecmint.com/shell-script-to-send-email-alert-when-memory-low/
 
+### Installation
+  1) Clone the repo: `git clone https://github.com/danjmercurio/memcheck.git`
+  2) Change to the repo directory by running `cd memcheck` and run `chmod +x memcheck.sh` to set the executable flag to true. Otherwise, you wil get a permission denied error.
+  3) (Optional) Copy to the directory containing other system utilities by running `sudo cp ./memcheck.sh /usr/bin/memcheck` Be very careful that you have supplied the correct arguments when running this command.
+
 ### Can I change any of the options?
 Yes, you can reconfigure the following options by cloning the repo and substituting your own values where I have defined the defaults
   - `MEMORY_CRITICAL_LIMIT=100` Default: **100mb**
