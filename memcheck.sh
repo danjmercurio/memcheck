@@ -8,6 +8,10 @@
 # License        :GNU GPL-3	
 # Modified       :Aug 31, 2018, 23:15:16
 #######################################################################################
+MEMORY_CRITICAL_LIMIT=100 # 100mb
+MEMORY_LOW_LIMIT=300 # 300mb
+CHECK_INTERVAL='5s' # Check memory levels every 5 seconds. Run man sleep for details on possible arguments
+
 while true
 do
 	## get total free memory size in megabytes(MB) 
@@ -19,9 +23,9 @@ do
 		#file=/home/demo/top_proccesses_consuming_memory.txt
 		## raise alert
 		notify-send -u critical -t 2000 "Warning, memory is running dangerously low" "Free memory: $free MB"
-	elif [[ "$free" -le 301]]; then
+	elif [[ "$free" -le 300]]; then
 		notify-send -u normal -t 1500 "Warning, memory is getting low" "Free memory: $free MB"
 	fi
 	
-	sleep 5s # Five second interval between checks
+	sleep 5s` # Five second interval between checks
 done

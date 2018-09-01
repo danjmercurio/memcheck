@@ -11,5 +11,20 @@ Yeah, I need to buy a new laptop. But in the meantime, maybe others will find th
   - gets memory info from free from GNU coreutils, which gets memory info from /proc virtual filesystem
   - Polls every 5 seconds by default
   - Requires libnotify and notify-send binary *(You probably already have this if you run Debian)*
-  - Please don't make fun of me for using [code]while true[/code]
+  - Feel free to ridicule me for using `while true`
+  
+### What was the original version like, and where can I find it?
+It included provisions to email the user instead of using `libnotify`. Although this is a good approach I perfer to receive desktop notifications which I am much more likely to notice.
+
+The original is here: https://www.tecmint.com/shell-script-to-send-email-alert-when-memory-low/
+
+### Can I change any of the options?
+Yes, you can reconfigure the following options by cloning the repo and substituting your own values where I have defined the defaults
+  - `MEMORY_CRITICAL_LIMIT=100` Default: **100mb**
+  - `MEMORY_LOW_LIMIT=300` Default: **300mb**
+  - `CHECK_INTERVAL='5s'` Default: Check memory levels every 5 seconds. 
+  
+  Protip: Run `man sleep` for details on all possible values run sleep --help or read the documentation from GNU coreutils at http://www.gnu.org/software/coreutils/sleep
+
+
 
